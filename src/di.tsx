@@ -8,8 +8,8 @@ export function registerContainer(container: IContainer) {
 }
 
 // This function takes a component and inject dependencies.
-export function withDependencyInjection<TProps extends TInjected, TInjected>(WrappedComponent: (props: TProps) => any, injectProps: Record<keyof TInjected, string>) {
-  return (props: Pick<TProps, Exclude<keyof TProps, keyof TInjected>>) => {
+export function withDependencyInjection<TProps, TInjected>(WrappedComponent: (props: TProps & TInjected) => any, injectProps: Record<keyof TInjected, string>) {
+  return (props: TProps) => {
     const injectedProps: any = {};
     for (const injection in injectProps) {
       injectedProps[injection] = reactContainer.get(injectProps[injection]);
