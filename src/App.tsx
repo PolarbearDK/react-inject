@@ -21,7 +21,7 @@ export function App() {
         </a>
 
         <div>
-          <Greet greeting="Hej"></Greet>
+          <Greet greeting="Hallo"></Greet>
         </div>
       </header>
     </div>

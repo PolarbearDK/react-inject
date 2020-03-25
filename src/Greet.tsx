@@ -13,4 +13,4 @@ export function GreetInjected(props: HelloProps) {
   return <span>{greeting} {say.say()}</span>;
 }
 
-export const Greet = withDependencyInjection<HelloProps, Omit<HelloProps, 'say'>>(GreetInjected, { say: ServiceNames.SayService });
+export const Greet = withDependencyInjection<HelloProps, Pick<HelloProps, 'say'>>(GreetInjected, { say: ServiceNames.SayService });
