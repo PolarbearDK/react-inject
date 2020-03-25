@@ -1,8 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Greet } from './Greet';
 
-function App() {
+export function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -18,9 +19,11 @@ function App() {
         >
           Learn React
         </a>
+
+        <div>
+          <Greet greeting="Hej"></Greet>
+        </div>
       </header>
     </div>
   );
 }
-
-export default App;

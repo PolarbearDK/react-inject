@@ -1,8 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { WorldService, SayService, ISay } from './Say';
+import { App } from './App';
+import { Container } from './Container';
+import { registerContainer } from './di';
+import { ServiceNames } from './serviceNames';
+
+
+const container = new Container();
+container.registerSingleton<ISay>(WorldService.serviceName, () => new WorldService())
+container.register<ISay>(SayService.serviceName, () => new SayService("Goodbye"))
+container.register<ISay>(ServiceNames.SayService, () => new SayService("Foo Bond, James Bond"))
+registerContainer(container);
 
 ReactDOM.render(
   <React.StrictMode>
