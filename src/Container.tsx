@@ -2,7 +2,7 @@ export type Factory<T> = (container: Container) => T;
 export type FactoryOrInstance<T> = T | Factory<T>;
 
 export function isFactory<T>(factoryOrInstance: FactoryOrInstance<T>): factoryOrInstance is Factory<T> {
-  return typeof factoryOrInstance === "function";
+  return typeof factoryOrInstance === 'function';
 }
 
 export interface IContainer {
@@ -39,8 +39,7 @@ export class Container implements IContainer {
     const loadingSingleton = this.loadingSingleton;
     try {
       return factory(this);
-    }
-    finally {
+    } finally {
       this.loadingSingleton = loadingSingleton;
     }
   }
@@ -56,21 +55,19 @@ export class Container implements IContainer {
       }
       return factoryOrInstance;
     }
-    if (this.loadingSingleton)
-      throw Error(`Service ${name} not registered as singleton.`);
+    if (this.loadingSingleton) throw Error(`Service ${name} not registered as singleton.`);
     return undefined;
   }
 
   private getTrancient<T>(name: string): T {
     const factory: Factory<T> = this.trancientRegistry[name];
-    if (factory)
-      return factory(this);
+    if (factory) return factory(this);
 
     throw Error(`Service ${name} not registered.`);
   }
 
   public get<T>(name: string): T {
-    console.warn("container", this.singletonRegistry, this.trancientRegistry);
+    // console.warn("container", this.singletonRegistry, this.trancientRegistry);
 
     return this.getSingleton(name) || this.getTrancient(name);
   }
